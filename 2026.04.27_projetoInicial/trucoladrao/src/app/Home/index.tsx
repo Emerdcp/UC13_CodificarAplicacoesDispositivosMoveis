@@ -14,8 +14,45 @@ export default function Home() {
     if(time.toLowerCase() === 'a'){
       setTimeA(timeA + valor)
     }
+    if(time.toLowerCase() === 'b'){
+      setTimeB(timeB + valor)
+    }
   }
 
+  function zerarPlcar(){
+    Alert.alert(
+      "Confirmar",
+      "Deseja zerar placar",
+      [
+        {text: "Cancelar", style: "cancel"},
+        {text: "Sim", onPress:()=> {
+            setTimeA(0)
+            setTimeB(0)
+          }
+        }
+      ]
+    )
+  }
+
+//   function atualizarPlacar(time: string, valor: number){
+//   if(time.toLowerCase() === 'a'){
+//     setTimeA(prev => {
+//       const novo = prev + valor
+//       if(novo < 0) return 0
+//       if(novo > 12) return 12
+//       return novo
+//     })
+//   }
+
+//   if(time.toLowerCase() === 'b'){
+//     setTimeB(prev => {
+//       const novo = prev + valor
+//       if(novo < 0) return 0
+//       if(novo > 12) return 12
+//       return novo
+//     })
+//   }
+// }
 
   return (
     <View style={styles.container}>
@@ -23,24 +60,29 @@ export default function Home() {
       <Text style={styles.texto}>Time A x Time B</Text>
       <View style={styles.row}>
         <Input value={timeA.toString()} readOnly/>
-        <Input value="0" readOnly/>
+        <Input value={timeB.toString()} readOnly/>
       </View>
       <View style={styles.row}>
         <Button titulo="+1" 
           onPress={()=> atualizarPlacar('a', 1)}/>
         <Button titulo="+1" 
-          onPress={()=> atualizarPlacar('a', 1)}/>
+          onPress={()=> atualizarPlacar('b', 1)}/>
       </View>
       <View style={styles.row}>
-        <Button titulo="+3" />
-        <Button titulo="+3" />
+        <Button titulo="+3" 
+          onPress={()=> atualizarPlacar('a', 3)}/>
+        <Button titulo="+3" 
+          onPress={()=> atualizarPlacar('b', 3)}/>
       </View>
       <View style={styles.row}>
-        <Button titulo="-1" />
-        <Button titulo="-1" />
+        <Button titulo="-1" 
+          onPress={()=> atualizarPlacar('a', -1)}/>
+        <Button titulo="-1" 
+          onPress={()=> atualizarPlacar('b', -1)}/>
       </View>
       <View style={[styles.row, {paddingTop: 32}]}>
-        <Button titulo="Zerar" />
+        <Button titulo="Zerar" 
+          onPress={zerarPlcar}/>
       </View>
     </View>
   );

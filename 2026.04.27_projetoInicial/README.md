@@ -47,6 +47,13 @@ Selecione a versão do API
 
 ### Para rodar depois da configuração, para rodar OFFLINE
 
+- Fazer a instalação.
+
+```
+npm install expo
+```
+
+- Depois rodar
 ```
 npx expo start --offline
 ```
@@ -83,4 +90,14 @@ Digitar "User Settings (JSON)"
 ```sql
 export default function Home()
 ```
+
+# Para rodar no Emulador.
+
+- Vai no Google chrome e digite expo go.
+
+- Acesse a primeira pesquisa, e instalar sempre um antes da versão.
+
+![alt text](image-9.png)
+
+-
 

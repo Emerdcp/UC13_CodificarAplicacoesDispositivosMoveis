@@ -63,6 +63,8 @@ Pega o caminho e abre no windows.
 
 ![alt text](image-10.png)
 
+- Pegar o caminho, para poder abrir a pasta do android, e colocar no windows.
+
 - Seleciona o Pr e troca pelo caminho do emulator
 
 C:\Users\emerson.cpinto\AppData\Local\Android\Sdk\emulator
