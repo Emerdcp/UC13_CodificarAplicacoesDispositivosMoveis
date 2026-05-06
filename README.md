@@ -19,7 +19,7 @@ Onde está *my-app*
 
 - Selecione **Blank (TypeScript)**
 
-![alt text](image.png)
+![alt text](2026.05.04_Revisao/imagem/image.png)
 
 - Configuração para abrir ele no Android
 
@@ -33,19 +33,19 @@ npx expo start
 
 Selecione a versão do API
 
-![alt text](image-1.png)
+![alt text](2026.05.04_Revisao/imagem/image-1.png)
 
 - Copiar o link e ir no android.
 
-![alt text](image-2.png)
+![alt text](2026.05.04_Revisao/imagem/image-2.png)
 
 - Acessa o Google pelo emulador.
 
-![alt text](image-3.png)
+![alt text](2026.05.04_Revisao/imagem/image-3.png)
 
 - Colar e dar um enter e fazer o downloads.
 
-![alt text](image-4.png)
+![alt text](2026.05.04_Revisao/imagem/image-4.png)
 
 - Aceitar as funções, verificar porque pode estar aberto em outra APP, precisa minimizar.
 
@@ -56,7 +56,7 @@ npx expo start --offline
 ```
 - Depois vamos usar o opção **A** para rodar no android.
 
-![alt text](image-5.png)
+![alt text](2026.05.04_Revisao/imagem/image-5.png)
 
 # Para configurar as pasta e aparecer raiz.
 
@@ -66,11 +66,11 @@ Digitar "User Settings (JSON)"
 
 - No último linha, colocar virgula e digitar.
 
-![alt text](image-6.png)
+![alt text](2026.05.04_Revisao/imagem/image-6.png)
 
 "explorer.compactFolders": false,
 
-![alt text](image-7.png)
+![alt text](2026.05.04_Revisao/imagem/image-7.png)
 
 ## Alteração de configuração correto do projeto.
 
@@ -78,7 +78,7 @@ Digitar "User Settings (JSON)"
 
 - Temos que trazer a arquivo da pasta App.tsx para Home.
 
-![alt text](image-8.png)
+![alt text](2026.05.04_Revisao/imagem/image-8.png)
 
 - Alterar para o App.tsx para Home.tsx
 
@@ -88,3 +88,36 @@ Digitar "User Settings (JSON)"
 export default function Home()
 ```
 
+
+# Configuração para uso em Web.
+
+- Usar npm install sempre para um novo PC para poder instalar as informação.
+
+```sql
+npm install
+```
+
+- Depois rodar o comando para verificar a instalação.
+
+```sql
+npx expo install react-dom react-native-web
+```
+
+- Se apresentar erro, usar a descrição complementar
+
+```sql
+npm install react-dom react-native-web
+```
+
+- Erro apresentado por causa das dependências;
+```sql
+npm install react-dom react-native-web --legacy-peer-deps
+```
+
+Com isso vai funcionar na web.
+
+- Ai só rodar novamente o comando para poder rodar, e clica o W para acessar web
+
+```
+npx expo start --offline
+```
