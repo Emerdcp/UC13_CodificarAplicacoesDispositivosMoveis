@@ -12,10 +12,29 @@ export default function Home() {
 
   function atualizarPlacar(time: string, valor: number){
     if(time.toLowerCase() === 'a'){
-      setTimeA(timeA + valor)
+      setTimeA(prev => {
+        const novoValor = prev + valor
+        if(novoValor < 0){
+          return 0
+        }
+        if(novoValor > 12){
+          return 12
+        }
+        return novoValor
+      })
     }
+
     if(time.toLowerCase() === 'b'){
-      setTimeB(timeB + valor)
+      setTimeB(prev => {
+        const novoValor = prev + valor
+        if(novoValor < 0){
+          return 0
+        }
+        if(novoValor > 12){
+          return 12
+        }
+        return novoValor
+      })
     }
   }
 
@@ -34,27 +53,7 @@ export default function Home() {
     )
   }
 
-//   function atualizarPlacar(time: string, valor: number){
-//   if(time.toLowerCase() === 'a'){
-//     setTimeA(prev => {
-//       const novo = prev + valor
-//       if(novo < 0) return 0
-//       if(novo > 12) return 12
-//       return novo
-//     })
-//   }
-
-//   if(time.toLowerCase() === 'b'){
-//     setTimeB(prev => {
-//       const novo = prev + valor
-//       if(novo < 0) return 0
-//       if(novo > 12) return 12
-//       return novo
-//     })
-//   }
-// }
-
-  return (
+   return (
     <View style={styles.container}>
       {/* <Text style={styles.texto}>Olá, Mundo!</Text> */}
       <Text style={styles.texto}>Time A x Time B</Text>
