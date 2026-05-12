@@ -50,6 +50,12 @@ Vamos instalar a interface para poder utilizar o emulado.
 
 ![alt text](image-4.png)
 
+# Rodar comando no CMD.
+
+```sql
+setx ANDROID_HOME "%LOCALAPPDATA%\Android\Sdk"
+setx PATH "%PATH%;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\emulator"
+```
 
 # Se apresentar erro ao emular.
 
