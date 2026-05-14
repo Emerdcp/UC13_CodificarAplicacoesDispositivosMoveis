@@ -9,7 +9,7 @@ import { Button } from '@/components/Button'
 
 import { style } from './style';
 import { FilterStatus } from '@/types/FilterStatus';
-import { ItemStorage} from '@/storage/itensStorage';
+import { ItemStorage, fnStorage} from '@/storage/itensStorage';
 
 const FILTER_STATUS: FilterStatus[] = [FilterStatus.PENDING, FilterStatus.DONE]
 
@@ -18,7 +18,7 @@ export default function Home() {
   const [description, setDescription] = useState('')
   const [itens, setItens] = useState<ItemStorage[]>([])
 
-  function fnAdicionarItem(){
+  async function fnAdicionarItem(){
     if(!description.trim()){
       return Alert.alert("Adicionar", "Informe a descrição para adicionar.")
     }
@@ -29,10 +29,29 @@ export default function Home() {
       status: FilterStatus.PENDING //Pending => Pendênte
     }
 
-    setItens([...itens, newItem])
+    const responseStorage = await fnStorage.add(newItem)
+
+    Alert.alert("Adicionado", `O item ${description} foi adicionado!`)
+
+    setItens(responseStorage)
 
     setDescription('')
   }
+
+  async function itemByFilter() {
+    try{
+      const response = await fnStorage.getByFilter(filter)
+      setItens(response)
+
+    } catch(error){
+      Alert.alert("Erro", "Não foi possível filtrar os itens")
+    } 
+  }
+
+  useEffect(()=> {
+    itemByFilter()
+    console.log("Estou aqui do useEffect")
+  }, [filter])
 
 
   return (
@@ -52,7 +71,7 @@ export default function Home() {
       <View style={style.content}>
         <View style={style.header}>
 
-
+          {/* Pendente, comprado */}
           {FILTER_STATUS.map((status) => (
             <Filter
               key={status}
