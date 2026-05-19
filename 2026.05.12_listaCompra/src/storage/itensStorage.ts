@@ -48,10 +48,27 @@ async function getByFilter(statusFilter: FilterStatus) {
     return itensFiltrados
 }
 
+async function clear() {
+    try {
+        await AsyncStorage.removeItem(ITENS_STORAGE_KEY)
+    } catch (error) {
+        throw new Error('CLEAR ' + error)
+    }
+}
+
+async function remove(id: string) {
+    const itens = await get()
+    const updateItem = itens.filter(item => item.id !== id)
+    await save(updateItem)
+}
+
 
 //Adiciona as funções para poder importar
 export const fnStorage = {
     add,
     get,
     getByFilter,
+    save,
+    clear,
+    remove
 }

@@ -49,7 +49,7 @@ Selecione a versão do API
 
 - Aceitar as funções, verificar porque pode estar aberto em outra APP, precisa minimizar.
 
-### Para rodar depois da configuração, para rodar OFFLINE
+### Para rodar depois da configuração, para rodar OFFLINE ------- Usar no powershell
 
 ```
 npx expo start --offline
@@ -71,6 +71,54 @@ Digitar "User Settings (JSON)"
 "explorer.compactFolders": false,
 
 ![alt text](2026.05.04_Revisao/imagem/image-7.png)
+
+
+
+## Instalar Lucide
+
+```sql
+npm install lucide-react-native
+
+npm install lucide-react-native react-native-svg
+```
+
+## Desbloquear powershell para rodar scripts npx/npm
+ 
+TypeScript
+```sql
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+ 
+## comando para desbloquear o expo no terminal é preciso rodar toda vez que abrir o terminal
+ 
+TypeScript
+```sql
+$env:NODE_TLS_REJECT_UNAUTHORIZED="0"
+```
+
+## instalar o async storage
+ 
+TypeScript
+```sql
+npx expo install @react-native-async-storage/async-storage
+```
+
+
+
+## Não pode de esquecer de altear
+
+Fica na index.ts
+
+import App from './src/app/Home';
+
+Tem que colocar o caminho para acesso.
+
+
+
+
+
+
+
 
 ## Alteração de configuração correto do projeto.
 
