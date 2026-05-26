@@ -1,6 +1,6 @@
 # React Native - Navigation
 
-Link: https://www.notion.so/React-Native-Navigation-36beea68b6f9802ead6ed85a85cd9670
+ 
 
 Antes da gente começar quero deixar registrado aqui que todo o conteúdo foi baseado no terminal do PoweShell devido a algumas limitações de rede interna então vamos configurar ele
 
