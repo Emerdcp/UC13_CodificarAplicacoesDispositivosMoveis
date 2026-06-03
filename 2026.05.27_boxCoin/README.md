@@ -63,3 +63,12 @@ Para fazer instalação da cor gradiente
 ```expo
 npx expo install expo-linear-gradient
 ```
+
+## Para fazer instalação do Icons
+
+Para instalar e usar os icones no APP
+```expo
+npx expo install @expo/vector-icons -- --legacy-peer-deps
+```
+
+

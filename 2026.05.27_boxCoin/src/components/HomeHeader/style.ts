@@ -11,7 +11,18 @@ export const styles = StyleSheet.create({
         gap: 24,
         justifyContent: "flex-end",
     },
-    label: {fontSize: 12, color: colors.white},
-    total: {fontSize: 32, color: colors.white},
-    resumoContainer: {} 
+    label: {
+        fontSize: 12, 
+        color: colors.white
+    },
+    total: {
+        fontSize: 32, 
+        color: colors.white
+    },
+    resumoContainer: {
+        width: "100%",
+        flexDirection: "row",
+        gap: 12,
+        justifyContent: "space-between",
+    } 
 })
