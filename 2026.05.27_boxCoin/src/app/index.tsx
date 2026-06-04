@@ -1,11 +1,12 @@
 import { colors } from "@/theme/colors";
 import { router } from "expo-router";
-import { View, Text, Button } from "react-native";
+import { View, Text, } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { HomeHeader } from "@/components/HomeHeader";
 import { Objetivo } from "@/components/Objetivo";
 import { Lista } from "@/components/Lista";
+import { Button } from "@/components/Button";
 
 const resumo = {
     total: "R$ 8.745,00",
@@ -53,12 +54,18 @@ export default function Index(){
             <Lista
                 titulo='Metas'
                 data={objetivos}
-                renderItem={()=>
-                    <Objetivo />
+                renderItem={({item})=>
+                    <Objetivo data={item}
+                    onPress={()=> router.navigate(`/em-progresso/${item.id}`)}
+                    />
                 }
                 emptyMensagem='Nenhuma meta encontrada'
                 containerStyle={{ paddingHorizontal: 24}}
             />
+
+            <View style={{padding: 24, marginBottom: 32}}>
+                <Button titulo='Nova Meta' onPress={()=>router.navigate("/objetivo")}/>
+            </View>
 
         </View>
     )
