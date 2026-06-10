@@ -171,3 +171,4 @@ npx expo start --offline
 ```
 
 - não esquecer de ver se tem o expo go instalado se não funcionar, qualquer coisa pegar e baixar pelo link expo go, excolher uma versão antes, de baixa android, não esquecer de copiar o colocar o link gerado a baixo, e colocar no emulador.
+

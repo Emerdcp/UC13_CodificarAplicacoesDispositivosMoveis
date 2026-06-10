@@ -71,4 +71,17 @@ Para instalar e usar os icones no APP
 npx expo install @expo/vector-icons -- --legacy-peer-deps
 ```
 
+## Instalação
 
+Para instalar
+```expo
+npm install react-native-currency-input -- --legacy-peer-deps
+```
+
+
+## Para fazer instalação do SQLite para usar banco de dados
+
+Para instalar do SQLite para usar banco de dados
+```expo
+npx expo install expo-sqlite@15.2.10 -- --legacy-peer-deps
+```
