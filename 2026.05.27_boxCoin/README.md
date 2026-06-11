@@ -23,7 +23,7 @@ Altera a Main no arquivo
 
 ## No arquivo App.json
 
-Altera a Main no arquivo colocar o sheme
+Altera a Main no arquivo colocar o sherman
 ```json
     "slug": "2026.05.27_boxCoin",
     "scheme": "BoxCoin",
