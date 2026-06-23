@@ -71,7 +71,11 @@ export default function Home() {
     <SafeAreaView style={styles.container}>
 
       <Text style={styles.title}>
-        Stock Box
+        📦 Stock Box
+      </Text>
+
+      <Text style={styles.subtitle}>
+        Controle de Estoque
       </Text>
 
       <SearchBar
@@ -79,14 +83,46 @@ export default function Home() {
         onChangeText={setSearch}
       />
 
-      <View style={styles.summaryCard}>
-        <Text style={styles.infoText}>
-          Total Produtos: {products.length}
-        </Text>
+      <View style={styles.statsContainer}>
 
-        <Text style={styles.infoText}>
-          Valor Estoque: R$ {totalEstoque.toFixed(2)}
-        </Text>
+        <View
+          style={[
+            styles.statCard,
+            styles.statCardLeft,
+          ]}
+        >
+          <Text style={styles.statIcon}>
+            📦
+          </Text>
+
+          <Text style={styles.statValue}>
+            {products.length}
+          </Text>
+
+          <Text style={styles.statLabel}>
+            Produtos
+          </Text>
+        </View>
+
+        <View
+          style={[
+            styles.statCard,
+            styles.statCardRight,
+          ]}
+        >
+          <Text style={styles.statIcon}>
+            💰
+          </Text>
+
+          <Text style={styles.statValue}>
+            R$ {(totalEstoque / 1000).toFixed(0)}k
+          </Text>
+
+          <Text style={styles.statLabel}>
+            Estoque
+          </Text>
+        </View>
+
       </View>
 
       <FlatList
