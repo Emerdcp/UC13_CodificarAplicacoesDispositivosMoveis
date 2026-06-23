@@ -1,4 +1,4 @@
-import { Text, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
+import { Text, FlatList, SafeAreaView, } from "react-native";
 import { router } from "expo-router";
 import { ProductCard } from "../components/ProductCard";
 import { FloatingButton } from "../components/FlatingButton";
@@ -7,41 +7,65 @@ import { SearchBar } from "../components/SearchBar";
 import { styles } from "./styles";
 import { View } from "react-native";
 import { ProductModal } from "../components/ProductModal";
-
-type Product = {
-  id: number;
-  title: string;
-  quantity: number;
-};
+import { useMigrateDatabase } from "@/database/migrate";
+import { useEffect } from "react";
+import { useProductDatabase, ProductResponse, } from "@/database/useProductDatabase";
+import { useFocusEffect } from "expo-router";
+import { useCallback } from "react";
 
 export default function Home() {
   const [search, setSearch] = useState("");
-
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [products, setProducts] = useState<ProductResponse[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<ProductResponse | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const totalEstoque = products.reduce(
+    (total, item) =>
+      total + item.price * item.quantity,
+    0
+  );
+  const { initializeDatabase } = useMigrateDatabase();
+  const productDatabase = useProductDatabase();
 
-  const products = [
-    {
-      id: 1,
-      title: "Mouse",
-      quantity: 10,
-    },
-    {
-      id: 2,
-      title: "Teclado",
-      quantity: 5,
-    },
-    {
-      id: 3,
-      title: "Monitor",
-      quantity: 2,
-    },
-    {
-      id: 4,
-      title: "Notebook",
-      quantity: 8,
-    },
-  ];
+  const filteredProducts = products.filter(
+    (item) =>
+      item.title
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
+      item.description
+        .toLowerCase()
+        .includes(search.toLowerCase())
+  );
+
+  async function loadProducts() {
+    try {
+      const result =
+        await productDatabase.findAll();
+      console.log(
+        "PRODUTOS DO BANCO:",
+        result
+      );
+      setProducts(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  useEffect(() => {
+    async function loadDatabase() {
+      await initializeDatabase();
+      await loadProducts();
+    }
+    loadDatabase();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+
+      loadProducts();
+
+    }, [])
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -61,12 +85,13 @@ export default function Home() {
         </Text>
 
         <Text style={styles.infoText}>
-          Valor Estoque: R$ 1.250,00
+          Valor Estoque: R$ {totalEstoque.toFixed(2)}
         </Text>
       </View>
 
       <FlatList
-        data={products}
+        // data={products}
+        data={filteredProducts}
         keyExtractor={(item) => String(item.id)}
         numColumns={2}
         contentContainerStyle={{
@@ -74,6 +99,7 @@ export default function Home() {
         }}
         renderItem={({ item }) => (
           <ProductCard
+            imageUrl={item.image_url}
             title={item.title}
             quantity={item.quantity}
             onPress={() => {
@@ -93,6 +119,9 @@ export default function Home() {
         onClose={() =>
           setModalVisible(false)
         }
+        onDeleteSuccess={() => {
+          loadProducts();
+        }}
       />
 
       <FloatingButton

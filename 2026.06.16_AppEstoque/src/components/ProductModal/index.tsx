@@ -7,24 +7,54 @@ import {
 } from "react-native";
 import { styles } from "./styles";
 import { router } from "expo-router";
+import { Alert } from "react-native";
+import { useProductDatabase } from "@/database/useProductDatabase";
 
 type Props = {
     visible: boolean;
     onClose: () => void;
+    onDeleteSuccess: () => void;
 
     product: {
         id: number;
+        image_url: string;
         title: string;
+        description: string;
         quantity: number;
-        price?: number;
+        price: number;
     } | null;
 };
 
 export function ProductModal({
     visible,
     onClose,
+    onDeleteSuccess,
     product,
 }: Props) {
+
+    const productDatabase = useProductDatabase();
+
+    async function handleDelete() {
+        if (!product) return;
+        try {
+            await productDatabase.remove(
+                product.id
+            );
+
+            Alert.alert(
+                "Sucesso",
+                "Produto excluído."
+            );
+            onDeleteSuccess();
+            onClose();
+        } catch (error) {
+            console.log(error);
+            Alert.alert(
+                "Erro",
+                "Não foi possível excluir."
+            );
+        }
+    }
 
     console.log("VISIBLE:", visible);
     console.log("PRODUCT:", product);
@@ -53,7 +83,7 @@ export function ProductModal({
 
                     <Image
                         source={{
-                            uri: "https://picsum.photos/200",
+                            uri: product.image_url,
                         }}
                         style={styles.image}
                     />
@@ -63,15 +93,19 @@ export function ProductModal({
                     </Text>
 
                     <Text style={styles.infoText}>
+                        Descrição: {product.description}
+                    </Text>
+
+                    <Text style={styles.infoText}>
                         Quantidade: {product.quantity}
                     </Text>
 
                     <Text style={styles.infoText}>
-                        Valor Unitário: R$ 25,00
+                        Valor Unitário: R$ {product.price.toFixed(2)}
                     </Text>
 
                     <Text style={styles.totalText}>
-                        Valor Total: R$ {product.quantity * 25},00
+                        Valor Total: R$ {(product.quantity * product.price).toFixed(2)}
                     </Text>
 
                     <View style={styles.buttonContainer}>
@@ -97,6 +131,23 @@ export function ProductModal({
 
                         <TouchableOpacity
                             style={styles.deleteButton}
+                            onPress={() =>
+                                Alert.alert(
+                                    "Excluir Produto",
+                                    `Deseja excluir ${product.title}?`,
+                                    [
+                                        {
+                                            text: "Cancelar",
+                                            style: "cancel",
+                                        },
+                                        {
+                                            text: "Excluir",
+                                            style: "destructive",
+                                            onPress: handleDelete,
+                                        },
+                                    ]
+                                )
+                            }
                         >
                             <Text style={styles.buttonText}>
                                 Excluir

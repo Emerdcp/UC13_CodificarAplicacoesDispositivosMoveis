@@ -8,16 +8,19 @@ import {
 import { styles } from "./styles";
 
 type Props = {
+  imageUrl: string;
   title: string;
   quantity: number;
   onPress: () => void;
 };
 
 export function ProductCard({
+  imageUrl,
   title,
   quantity,
   onPress,
 }: Props) {
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -25,7 +28,7 @@ export function ProductCard({
     >
       <Image
         source={{
-          uri: "https://recreio.com.br/wp-content/uploads/2024/02/relampago-mcqueen_capa.jpg",
+          uri: imageUrl,
         }}
         style={styles.image}
       />
