@@ -12,6 +12,11 @@ UC13: Codificar aplicações para dispositivos móveis.
 ```sql
 npx create-expo-app --template
 ```
+Escolher versão. para escolher uma versão anterior
+```sql
+npx create-expo-app nome-app --template blank-typescript@sdk-54
+```
+
 
 - Escolha o nome do projeto.
 
@@ -24,7 +29,11 @@ Onde está *my-app*
 - Configuração para abrir ele no Android
 
 ### Acessar a pasta, e rodar o comando rodar o projeto.
-
+Roda primeiro
+```powershell
+$env:NODE_TLS_REJECT_UNAUTHORIZED="0"
+```
+Depois
 ```sql
 npx expo start
 ```
