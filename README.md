@@ -181,3 +181,44 @@ npx expo start --offline
 
 - não esquecer de ver se tem o expo go instalado se não funcionar, qualquer coisa pegar e baixar pelo link expo go, excolher uma versão antes, de baixa android, não esquecer de copiar o colocar o link gerado a baixo, e colocar no emulador.
 
+
+
+
+
+# Geração de de APP
+
+Link para fazer Icone do App
+
+https://www.figma.com/community/file/1637141012732584189/expo-app-icon-splash-sdk-54-community
+
+Aqui vamos apreender como fazer para poder baixar o APP para um celular android.
+
+01. Instalar a biclioteca
+```sql
+npx expo install expo-dev-client
+```
+
+02. Rodar comando para gerar a pasta android do projeto
+```sql
+npx expo prebuild
+```
+
+03. Acessa a pasta Android
+```sql
+cd android
+```
+
+- Obs: Pegar o arquivo gradle-8.14.3.7z baixado e colocado dentro da pasta
+C:\Users\emerson.cpinto\.gradle\wrapper\dists\gradle-8.14.3-bin\cv11ve7ro1n3o1j4so8xd9n66
+Dentro do seu usuário, até então funcionamento dentro do Senac.
+
+Acessa pasta Android/gradle/gradle-wrapper.properties e coloca o caminho e nome zipado.
+distributionUrl=file:///C:/Users/emerson.cpinto/.gradle/wrapper/dists/gradle-8.14.3-bin/cv11ve7ro1n3o1j4so8xd9n66/gradle-8.14.3.zip
+
+Rodar este caminho antes.
+($env:JAVA_TOOL_OPTIONS="-Djavax.net.ssl.trustStoreType=WINDOWS-ROOT -Djavax.net.ssl.trustStore=NONE")
+
+04. Rodar o comando vai rodar um script para copilação do projeto.
+```sql
+.\gradlew assembleRelease
+```
