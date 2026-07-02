@@ -1,5 +1,6 @@
-import { View, Text } from 'react-native'
-import { router, useLocalSearchParams } from 'expo-router'
+import { View, Text, Alert } from 'react-native'
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router'
+import { useCallback, useState } from 'react'
 
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
@@ -7,6 +8,7 @@ import { Lista } from '@/components/Lista'
 import { Progresso } from '@/components/Progresso'
 import { Transacoes } from '@/components/Transacoes'
 import { TransacoesTypes } from '@/utils/TransacoesType'
+import { useBoxCoinDatabase } from '@/database/useBoxCoinDatabase'
 
 
 const detalhes = {
@@ -40,21 +42,58 @@ const transacoes = [
 ]
 
 export default function emProgresso() {
-    const params = useLocalSearchParams()
+
+    const [detalhes, setDetalhes] = useState({
+        nome: "",
+        atual: "R$ 0,00",
+        meta: "R$ 0,00",
+        porcentagem: 0
+    })
+
+    const params = useLocalSearchParams<{ id: string }>()
+
+    const boxCoinDatabase = useBoxCoinDatabase()
+
+    async function fetchDetalhes() {
+        try {
+            const response = await boxCoinDatabase.show(Number(params.id))
+
+            console.log(response)
+
+            setDetalhes({
+                nome: response?.name ? response.name : "",
+                atual: response?.current ? String(response.current) : " R$ 0,00",
+                meta: response?.amount ? String(response.amount) : "R$ 0,00",
+                porcentagem: response?.percentage ? response.percentage : 0
+            })
+
+        } catch (error) {
+            Alert.alert("Erro", "Não foi possível carregar os detalhes da meta.")
+            console.log(error);
+        }
+    }
+
+
+    useFocusEffect(
+        useCallback(() => {
+            fetchDetalhes();
+        }, [])
+    );
+
     return (
         <View style={{ flex: 1, padding: 24, gap: 32 }}>
             <PageHeader
-                titulo='Apple Watch'
+                titulo={detalhes.nome}
                 rightButton={{
                     icon: 'edit',
-                    onPress: () => console.log("Editando meta")
+                    onPress: () => router.navigate(`/objetivo?id=${params.id}`)
                 }}
             />
             <Progresso data={detalhes} />
 
             <Lista
-                titulo='transações'
                 data={transacoes}
+                titulo={'transacoes'}
                 renderItem={({ item }) => (
                     <Transacoes data={item} onRemove={() => console.log("Remover Transações")} />
                 )}
