@@ -113,6 +113,19 @@ npx expo install @react-native-async-storage/async-storage
 ```
 
 
+## Ajustar o PATH
+
+Acessar tsconfig.json
+
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*":[
+        "./src/*"
+      ]
+    }
+  }
+
 
 ## Não pode de esquecer de altear
 
@@ -222,3 +235,23 @@ Rodar este caminho antes.
 ```sql
 .\gradlew assembleRelease
 ```
+
+
+
+
+
+
+
+
+
+# Para rodar Sistema no power Shel
+
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+$env:NODE_TLS_REJECT_UNAUTHORIZED="0"
+
+npx expo start 
+
+
+Rodar sempre para iniciar a pasta....
+

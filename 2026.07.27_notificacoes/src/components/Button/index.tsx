@@ -1,0 +1,39 @@
+// atalho rnfs -> react native function and style
+
+import { 
+    StyleSheet, 
+    Text, 
+    TouchableOpacity,
+    TouchableOpacityProps
+} from 'react-native'
+import React from 'react'
+
+type Props = TouchableOpacityProps & {
+    title: string,
+}
+
+export default function Button({ title, ...rest }: Props) {
+  return (
+    <TouchableOpacity style={styles.container} activeOpacity={0.8}>
+        <Text style={styles.text}>
+            {title}
+        </Text>
+    </TouchableOpacity>
+    
+  )
+}
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#3d44cd',
+        height: 48,
+        width: '100%',
+        borderRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    text: {
+        fontSize: 14,
+        color: '#f2f2f2',
+    },
+})
