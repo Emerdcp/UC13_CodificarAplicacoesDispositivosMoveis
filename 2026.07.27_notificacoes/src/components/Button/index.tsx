@@ -14,7 +14,7 @@ type Props = TouchableOpacityProps & {
 
 export default function Button({ title, ...rest }: Props) {
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.8}>
+    <TouchableOpacity style={styles.container} activeOpacity={0.8} {...rest}>
         <Text style={styles.text}>
             {title}
         </Text>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        fontSize: 14,
+        fontSize: 22,
         color: '#f2f2f2',
     },
 })
