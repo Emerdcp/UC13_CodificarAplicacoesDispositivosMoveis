@@ -17,7 +17,7 @@ export async function requestPermissaoNotificacao() {
 }
 
 //Notificações Imediatas
-export async function envioImediatoNotivicacao() {
+export async function envioImediatoNotificacao() {
     await Notifications.scheduleNotificationAsync({
         content: {
             title: "📢OLHA MENSAGEMMMM📢",
@@ -28,7 +28,7 @@ export async function envioImediatoNotivicacao() {
 }
 
 //Após 10 segundos
-export async function envioDelayNotivicacao() {
+export async function envioDelayNotificacao() {
     await Notifications.scheduleNotificationAsync({
         content: {
             title: "🔊Notificação Atrasada....",
@@ -43,7 +43,7 @@ export async function envioDelayNotivicacao() {
 }
 
 //Notificações com Som
-export async function envioSomNotivicacao() {
+export async function envioSomNotificacao() {
     //com som personalizado.
     // await Notifications.setNotificationCategoryAsync('custom-sound-channel',{
     //     name: "Ifood",
@@ -67,7 +67,7 @@ export async function cancelarTodasNotificacoes() {
 }
 
 //Notificações com Som
-export async function envioVibraNotivicacao() {
+export async function envioVibraNotificacao() {
     Vibration.vibrate(500);
 
     await Notifications.scheduleNotificationAsync({
