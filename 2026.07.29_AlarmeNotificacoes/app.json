@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "2026.07.29_AlarmeNotificacoes",
-    "slug": "2026.07.29_AlarmeNotificacoes",
+    "slug": "AlarmeNotificacoes",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,7 +16,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "2026.07.29_AlarmeNotificacoes",
+      "package": "com.emerdcp.AlarmeNotificacoes",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -30,6 +30,11 @@
     "plugins": [
       "expo-notifications",
       "@react-native-community/datetimepicker"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1ccf0afc-50e1-4a6f-9a67-7b0815f0e9f0"
+      }
+    }
   }
 }
