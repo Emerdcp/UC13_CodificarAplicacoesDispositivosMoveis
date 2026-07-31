@@ -4,7 +4,7 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 '   $env:NODE_TLS_REJECT_UNAUTHORIZED="0"
 
-npx expo start 
+npx expo start cl
 
 
 Rodar sempre para iniciar a pasta
@@ -15,7 +15,7 @@ Rodar sempre para iniciar a pasta
 
 Instalar para iniciar um projeto
 ```sql
-npx create-expo-app notificacoes --template blank-typescript@sdk-54
+npx create-expo-app "nome-app" --template blank-typescript@sdk-54
 ```
 
 Instalar serviços.
