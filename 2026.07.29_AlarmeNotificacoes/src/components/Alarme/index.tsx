@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     DateTimePickerAndroid,
     DateTimePickerEvent,
@@ -8,9 +8,11 @@ import Button from "@/components/Button";
 
 type Props = {
     onSelect(date: Date): void;
+    open?: boolean;
+    onClose?(): void;
 };
 
-export default function Alarme({ onSelect }: Props) {
+export default function Alarme({ onSelect, open = false, onClose, }: Props) {
     const [horaSelecionada, setHoraSelecionada] = useState(new Date());
 
     function selecionar(
@@ -35,10 +37,19 @@ export default function Alarme({ onSelect }: Props) {
         });
     }
 
+    useEffect(() => {
+        if (open) {
+            abrirSeletor();
+            onClose?.();
+        }
+    }, [open]);
+
     return (
-        <Button
-            title="Definir Alarme"
-            onPress={abrirSeletor}
-        />
+        !open && (
+            <Button
+                title="Definir Alarme"
+                onPress={abrirSeletor}
+            />
+        )
     );
 }
