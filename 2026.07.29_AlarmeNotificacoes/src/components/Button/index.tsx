@@ -20,16 +20,17 @@ export default function Button({ title, onPress }: Props) {
 
 const styles = StyleSheet.create({
   button: {
+    width: "100%",
     backgroundColor: "#2E8B57",
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    borderRadius: 10,
+    paddingVertical: 18,
+    borderRadius: 15,
     alignItems: "center",
+    elevation: 4,
   },
 
   text: {
     color: "#FFF",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
+    fontSize: 20,
+    fontWeight: "700",
+  }
 });
